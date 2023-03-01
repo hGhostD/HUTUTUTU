@@ -1,7 +1,6 @@
 // pages/HUPickImage/HUPickImage.ts
 let HUOpenCVModule = {}
 require('../../OpenCVModule/HUOpenCVModule', mod => {
-    // console.info(mod);
     HUOpenCVModule = mod
 });
 
@@ -11,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgPath: ''
+    imgPath: '../../OpenCVModule/images/1.jpg'
   },
 
   /**
