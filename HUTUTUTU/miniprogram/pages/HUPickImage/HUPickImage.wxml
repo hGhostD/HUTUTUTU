@@ -1,0 +1,5 @@
+<!--pages/HUPickImage/HUPickImage.wxml-->
+
+<image class="image" src="{{imgPath}}" mode="widthFix"></image>
+
+<button class="btn" type="primary" bindtap="selectImageClick">选择图片</button>

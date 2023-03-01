@@ -1,12 +1,13 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/HUPickImage/HUPickImage",
+    "pages/HUSaveImage/HUSaveImage"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#E9A368",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "white"
   },
   "subpackages": [
     {

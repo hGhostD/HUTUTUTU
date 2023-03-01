@@ -22,7 +22,7 @@ Page({
   },
 
   async loadImgClick() {
-    const imgPath = './shenhe.jpeg';
+    const imgPath = '../../images/1.jpg';
     const mat = await HUOpenCVModule.readImage(imgPath);
     console.info(mat);
     HUOpenCVModule.show(this.canvasDom, mat);
