@@ -1,0 +1,26 @@
+{
+  "name": "js_s2i_opencv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.s2icode.com/js_s2i_opencv.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "base64-js": "^1.5.1",
+    "canvas": "^2.10.2",
+    "jimp": "^0.16.2",
+    "jpeg-js": "^0.4.4",
+    "jsdom": "^20.0.2"
+  }
+}

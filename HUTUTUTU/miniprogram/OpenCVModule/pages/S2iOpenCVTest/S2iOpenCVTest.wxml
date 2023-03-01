@@ -1,0 +1,12 @@
+<!--pages/S2iOpenCVTest/S2iOpenCVTest.wxml-->
+<view class="page">
+
+  <image src="{{imgSrc}}" style="display: block ;width: 320px; height: 320px; margin-top: 40px; background-color: lightgray;"></image>
+
+  <canvas id="canvas1" type="2d" class="visibleCanvas" style="width:50vw;height:50vw; "></canvas>
+
+  <button type="primary" bindtap="versionClick" style="margin-top: 80px; width: 40vw; float: left;">OpenCV Version</button>
+
+  <button type="primary" bindtap="loadImgClick" style="margin-top: 80px; width: 40vw; float: right;">loadImage</button>
+
+</view>
