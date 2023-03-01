@@ -2,9 +2,9 @@
 global.wasm_url = '/OpenCVModule/lib/OpenCV/opencv_js.wasm.br'
 
 const cv = require("./lib/OpenCV/opencv");
-const tool = require('./lib/Tools/S2iBridgeTool');
+const tool = require('./lib/Tools/HUBridgeTool');
 
-const S2iOpenCVModule = {
+const HUOpenCVModule = {
 
   logVersion() {
     console.info(' 加载 OpenCV 版本 \n', cv.getBuildInformation());
@@ -27,4 +27,4 @@ const S2iOpenCVModule = {
   }
 }
 
-module.exports = S2iOpenCVModule;
+module.exports = HUOpenCVModule;

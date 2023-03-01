@@ -9,7 +9,7 @@
       "list": [
         {
           "name": "OpenCV 测试页面",
-          "pathName": "OpenCVModule/pages/S2iOpenCVTest/S2iOpenCVTest",
+          "pathName": "OpenCVModule/pages/HUOpenCVTest/HUOpenCVTest",
           "query": "",
           "launchMode": "default",
           "scene": null

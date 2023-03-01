@@ -1,4 +1,6 @@
-let S2iOpenCVModule = require('../../S2iOpenCVModule');
+// OpenCVModule/pages/HUOpenCVTest/HUOpenCVTest.ts
+let HUOpenCVModule = require('../../HUOpenCVModule');
+
 Page({
 
   /**
@@ -6,26 +8,25 @@ Page({
    */
   data: {
     imgSrc: '',
-    squareRect: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  onLoad() {
     this.initCanvas("canvas1")
   },
 
   versionClick() {
-    S2iOpenCVModule.logVersion();
+    HUOpenCVModule.logVersion();
   },
 
   async loadImgClick() {
     const imgPath = './shenhe.jpeg';
-    const mat = await S2iOpenCVModule.readImage(imgPath);
+    const mat = await HUOpenCVModule.readImage(imgPath);
     console.info(mat);
-    S2iOpenCVModule.show(this.canvasDom, mat);
-    const base64 = S2iOpenCVModule.convertMatToBase64(mat);
+    HUOpenCVModule.show(this.canvasDom, mat);
+    const base64 = HUOpenCVModule.convertMatToBase64(mat);
     
     this.setData({
       imgSrc: base64,
@@ -50,5 +51,4 @@ Page({
         _that.canvasDom = canvas2d
       });
   },
-
 })

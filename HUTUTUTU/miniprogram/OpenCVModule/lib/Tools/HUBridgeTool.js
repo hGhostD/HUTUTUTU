@@ -1,7 +1,7 @@
 
-const wxTool = require('./S2iWXOpenCVTool')
+const wxTool = require('./HUWXOpenCVTool')
 
-const S2iBridgeTool = {
+const HUBridgeTool = {
 
   async getImageDataWithPath(imgPath) {
     if ((typeof(wx) != undefined)) {
@@ -29,4 +29,4 @@ const S2iBridgeTool = {
 
 }
 
-module.exports = S2iBridgeTool;
+module.exports = HUBridgeTool;

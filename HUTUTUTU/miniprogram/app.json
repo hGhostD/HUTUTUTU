@@ -12,7 +12,7 @@
     {
       "root": "OpenCVModule",
       "pages": [
-          "pages/S2iOpenCVTest/S2iOpenCVTest"
+          "pages/HUOpenCVTest/HUOpenCVTest"
       ]
     }
   ],
