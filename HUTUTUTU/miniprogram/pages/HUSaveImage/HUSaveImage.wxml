@@ -1,4 +1,4 @@
 
 <image class="image" src="{{imgPath}}" mode="widthFix"></image>
 
-<button class="btn" type="primary" bindtap="saveImageClick">保存图片</button>
+<button type="primary" bindtap="saveImageClick">保存图片</button>

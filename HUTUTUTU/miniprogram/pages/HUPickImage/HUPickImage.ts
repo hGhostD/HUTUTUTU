@@ -10,7 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgPath: '../../OpenCVModule/images/1.jpg'
+    imgPath: '../../OpenCVModule/images/1.jpg',
+    show: false,
   },
 
   /**
@@ -29,5 +30,13 @@ Page({
         this.setData({imgPath: res.tempFiles[0].tempFilePath})
       }
     })
-  }
+  },
+
+  pop() {
+    this.setData({ show: true })
+  },
+
+  onClose() {
+    this.setData({ show: false });
+  },
 })

@@ -11,7 +11,3 @@ page {
   margin-top: 10vw;
   background-color: white;
 }
-
-.btn {
-  top: 10vw;
-}
