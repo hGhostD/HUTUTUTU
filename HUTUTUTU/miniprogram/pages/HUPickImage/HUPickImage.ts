@@ -12,6 +12,7 @@ Page({
   data: {
     imgPath: '../../OpenCVModule/images/1.jpg',
     show: false,
+    btnStyle: ""
   },
 
   /**

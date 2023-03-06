@@ -1,7 +1,6 @@
 /* pages/HUPickImage/HUPickImage.wxss */
 
 page {
-  background-color: #E9A368;
 }
 
 .image {
@@ -10,4 +9,32 @@ page {
   margin: auto;
   margin-top: 10vw;
   background-color: white;
+  border-radius: 6px;
+}
+
+.colorBoard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5vw;
+}
+
+.colorItem {
+  background-color: tomato;
+  width: 16vw;
+  height: 16vw;
+  border-radius: 8vw;
+}
+
+.btnBoard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5vw;
+
+}
+
+.primaryBtn {
+  /* width: 30vw; */
+  /* height: 10vw; */
 }

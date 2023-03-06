@@ -2,17 +2,16 @@
 
 <image class="image" src="{{imgPath}}" mode="widthFix"></image>
 
-<van-button type="primary" bindtap="selectImageClick">选择图片</van-button>
+<div class="colorBoard">
+  <div class="colorItem"></div>
+  <div class="colorItem"></div>
+  <div class="colorItem"></div>
+  <div class="colorItem"></div>
+  <div class="colorItem"></div>
+</div>
 
-
-<van-cell title="展示弹出层" is-link bind:click="showPopup" />
-
-<van-popup
-  show="{{show}}"
-  position="bottom"
-  custom-style="height: 20%;"
-  bind:close="onClose"
-/>
-<van-button type="primary" bindtap="pop">弹出</van-button>
-
-<van-slider value="50" bind:change="onChange" />
+<div class="btnBoard">
+  <van-button class="primaryBtn" style="{{btnStyle}}" color="linear-gradient(to right, #1989FA, #4bb0ff)"> 选择图片 </van-button>
+  <van-button class="primaryBtn" color="linear-gradient(to right, #1989FA, #4bb0ff)"> 选择图片 </van-button>
+  <van-button class="primaryBtn" color="linear-gradient(to right, #1989FA, #4bb0ff)"> 选择图片 </van-button>
+</div>
