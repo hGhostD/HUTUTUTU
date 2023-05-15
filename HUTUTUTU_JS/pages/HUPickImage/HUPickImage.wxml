@@ -1,0 +1,24 @@
+<!--pages/HUPickImage/HUPickImage.wxml-->
+
+<image class="image" src="{{imgPath}}" mode="widthFix"></image>
+
+<div class="colorBoard">
+  <div class="colorItem"></div>
+  <div class="colorItem"></div>
+  <div class="colorItem"></div>
+  <div class="colorItem"></div>
+  <div class="colorItem"></div>
+</div>
+
+<div class="btnBoard">
+  <van-button color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="selectImageClick">选择图片</van-button>
+  <van-button color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="convertGray">转灰图</van-button>
+  <van-button color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="saveImageClick">识别矩形</van-button>
+</div>
+
+<view class="canvasStyle">
+  <canvas id="myCanvas" type="2d" style="width:{{canvasWidth}}px; height:{{canvasHeight}}px; "></canvas>
+</view>
+
+
+<van-dialog id="van-dialog" />

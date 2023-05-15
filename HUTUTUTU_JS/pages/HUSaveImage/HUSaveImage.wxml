@@ -1,0 +1,10 @@
+
+<image class="image" src="{{imgPath}}" mode="widthFix"></image>
+
+<div class="saveBox">
+  <van-button class="saveBtn" color="linear-gradient(to right, #1989FA, #4bb0ff)" block round type="info" click="saveImageClick" >保存图片</van-button>
+  
+</div>
+<van-button color="linear-gradient(to right, #4bb0ff, #6149f6)">
+  渐变色按钮
+</van-button>

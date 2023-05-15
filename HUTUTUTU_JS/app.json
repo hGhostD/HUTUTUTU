@@ -1,0 +1,25 @@
+{
+  "pages":[
+    "pages/HUPickImage/HUPickImage",
+    "pages/HUSaveImage/HUSaveImage",
+    "pages/HUVantTest/HUVantTest"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle":"black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "subpackages": [
+    {
+      "root": "OpenCVModule",
+      "pages": [
+          "pages/HUOpenCVTest/HUOpenCVTest"
+      ]
+    }
+  ],
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index"
+  }
+}

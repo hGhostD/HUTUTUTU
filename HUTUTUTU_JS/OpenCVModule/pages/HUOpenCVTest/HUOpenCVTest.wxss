@@ -1,0 +1,13 @@
+/* OpenCVModule/pages/HUOpenCVTest/HUOpenCVTest.wxss */
+.page {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #E9A368; /* 梅染*/
+}
+
+
+
+button {
+  margin-top: 40px;
+}

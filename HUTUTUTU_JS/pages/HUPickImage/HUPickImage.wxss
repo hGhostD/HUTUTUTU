@@ -1,0 +1,59 @@
+/* pages/HUPickImage/HUPickImage.wxss */
+
+page {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: saddlebrown;
+}
+
+.image {
+  width: 90vw;
+  margin: auto;
+  margin-top: 5vw;
+  border-radius: 6px;
+  margin-bottom: 5vw;
+}
+
+.colorBoard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 5vw;
+  /* margin-bottom: 0; */
+  /* border: red 1px solid; */
+}
+
+.colorItem {
+  background-color: tomato;
+  width: 16vw;
+  height: 16vw;
+  border-radius: 8vw;
+}
+
+.btnBoard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5vw;
+  height: 10vw;
+  /* border: red 1px solid; */
+}
+
+.saveBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto 5vw;
+}
+
+.saveBtn {
+  width: 80vw;
+}
+
+.canvasStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

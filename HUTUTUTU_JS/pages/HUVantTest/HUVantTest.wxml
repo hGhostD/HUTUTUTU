@@ -1,0 +1,8 @@
+<!--pages/HUVantTest/HUVantTest.wxml-->
+<div style="display: flex;justify-content: center;align-items: center; height: 30vh;"> 
+  <van-button color="linear-gradient(to right, #000000, #FFFFFF)">
+  渐变色按钮
+</van-button>
+
+</div>
+<van-button type="info">按钮</van-button>

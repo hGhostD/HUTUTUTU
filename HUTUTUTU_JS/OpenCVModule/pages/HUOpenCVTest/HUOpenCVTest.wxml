@@ -1,0 +1,12 @@
+<!--OpenCVModule/pages/HUOpenCVTest/HUOpenCVTest.wxml-->
+<view class="page">
+
+<image src="{{imgSrc}}"></image>
+
+<canvas id="canvas1" type="2d" class="visibleCanvas" style="width:50vw;height:50vw; "></canvas>
+
+<button type="primary" bindtap="versionClick" style="margin-top: 80px; width: 40vw; float: left;">OpenCV Version</button>
+
+<button type="primary" bindtap="loadImgClick" style="margin-top: 80px; width: 40vw; float: right;">loadImage</button>
+
+</view>
