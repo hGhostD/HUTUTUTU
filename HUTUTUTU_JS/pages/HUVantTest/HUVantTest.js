@@ -1,3 +1,4 @@
+import Dialog from '@vant/weapp/dialog/dialog';
 // pages/HUVantTest/HUVantTest.js
 Page({
 
@@ -24,6 +25,16 @@ Page({
         }
       }
     })
+  },
+
+  dialog() {
+    Dialog.alert({
+      title: '标题',
+      message: '弹窗内容',
+      // theme: 'round-button',
+    }).then(() => {
+      // on close
+    });
   },
 
   getuserInfoClick() {

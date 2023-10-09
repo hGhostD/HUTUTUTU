@@ -2,7 +2,6 @@
 let HUOpenCVModule = {};
 require.async('../../OpenCVModule/HUOpenCVModule.js').then((mod) => {
     HUOpenCVModule = mod;
-    // console.info('mod', HUOpenCVModule.logVersion());
   })
   .catch(({
     errMsg,
@@ -10,10 +9,8 @@ require.async('../../OpenCVModule/HUOpenCVModule.js').then((mod) => {
   }) => {
     console.error(`path: ${mod}, ${errMsg}`)
   })
-
-import Dialog from '@vant/weapp/dialog/dialog';
-
-// const Dialog = require('@vant/weapp/dialog/dialog')
+// import Dialog from '@vant/weapp/dialog/dialog';
+const Dialog = require('@vant/weapp/dialog/dialog')
 
 const myCanvas = 'myCanvas';
 
@@ -93,7 +90,6 @@ Page({
   convertGray() {
     let gray = HUOpenCVModule.convertToGray(this.data.imgMat);
     HUOpenCVModule.show(this.data.canvasDom, gray);
-    // this.setData({ imgBase64: base });
   },
 
   async loadImg(imgSrc) {

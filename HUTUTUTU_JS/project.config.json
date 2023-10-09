@@ -7,7 +7,7 @@
     "scopeDataCheck": false,
     "coverView": true,
     "es6": true,
-    "postcss": false,
+    "postcss": true,
     "compileHotReLoad": false,
     "lazyloadPlaceholderEnable": false,
     "preloadBackgroundData": false,

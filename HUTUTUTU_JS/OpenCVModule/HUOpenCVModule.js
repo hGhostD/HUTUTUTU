@@ -1,4 +1,4 @@
-// 优先设置 wasm.br 文件路径
+// 优先设置 wasm.br 文件路径 必须使用绝对地址
 global.wasm_url = '/OpenCVModule/lib/OpenCV/opencv_js.wasm.br'
 
 const cv = require("./lib/OpenCV/opencv");
@@ -13,6 +13,9 @@ const HUOpenCVModule = {
   async readImage(imgPath) {
     const imgData = await tool.getImageDataWithPath(imgPath);
     const mat = cv.imread(imgData);
+    if (mat.rows > 1000 ) {
+      cv.resize(mat, mat, {width: 300, height: parseInt(mat.rows * (300 / mat.cols))}, 0 , 0, cv.INTER_AREA);
+    }
     return mat;
   },
 
@@ -42,7 +45,6 @@ const HUOpenCVModule = {
     } else if (channel == 4) {
       type = cv.COLOR_RGBA2GRAY;
     }
-    //
     cv.cvtColor(mat, result, type);
     return result;
   },
@@ -71,23 +73,20 @@ const HUOpenCVModule = {
     // 颜色量化
     const criteria = new cv.TermCriteria(cv.TermCriteria_EPS + cv.TermCriteria_COUNT, 10, 1.0);
     const labels = new cv.Mat();
-    const attempts = 20;
+    const attempts = 5;
     const centers = new cv.Mat();
 
-    cv.kmeans(sample, 8, labels, criteria, attempts, cv.KMEANS_RANDOM_CENTERS, centers);
+    cv.kmeans(sample, k, labels, criteria, attempts, cv.KMEANS_RANDOM_CENTERS, centers);
+    // 格式化结果
+    const r = [];
+    for (let i = 0; i < centers.data32F.length; i += 3) {
+      r[i / 3] = [parseInt(centers.data32F[i]), parseInt(centers.data32F[i + 1]), parseInt(centers.data32F[i + 2])];
+    }
+    console.log(r);
     dst.delete();
     sample.delete();
-    // 格式化结果
-    const result = centers.data32F.map((r) => parseInt(r));
-    const r = [];
-    for (let i = 0; i < 15; i += 3) {
-      r.push(result.slice(i, i + 3));
-    }
-    // return Array.from(r);
-    // return [[17, 167, 255], [255, 255,255], [0, 255, 0], [255, 0,0],[0,0,255]];
-    for (let i = 0; i < k; i++) {
-      r[i] = [result[i * 3], result[i * 3 + 1], result[i * 3 + 2]];
-    }
+    labels.delete();
+    centers.delete();
     return r;
   }
 }
