@@ -2,7 +2,13 @@
 <div style="display: flex;justify-content: center;align-items: center; height: 30vh;"> 
   <van-button color="linear-gradient(to right, #000000, #FFFFFF)">
   渐变色按钮
-</van-button>
-
+  </van-button>
 </div>
-<van-button type="info">按钮</van-button>
+
+<view class="button_view">
+  <van-button type="info" bind:tap="getuserInfoClick">获取用户信息</van-button>
+  <van-button type="info" bind:tap="networkClick">网络请求</van-button>
+  <van-button type="info" bind:tap="getClick">GET 请求</van-button>
+</view>
+
+<view>{{content}}</view>

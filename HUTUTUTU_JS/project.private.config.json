@@ -3,7 +3,8 @@
   "projectname": "HUTUTUTU_JS",
   "setting": {
     "compileHotReLoad": true,
-    "bigPackageSizeSupport": true
+    "bigPackageSizeSupport": true,
+    "urlCheck": true
   },
   "condition": {
     "miniprogram": {
@@ -39,5 +40,5 @@
       ]
     }
   },
-  "libVersion": "2.30.2"
+  "libVersion": "2.27.3"
 }

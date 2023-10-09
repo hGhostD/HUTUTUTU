@@ -12,7 +12,7 @@ page {
   width: 90vw;
   margin: auto;
   margin-top: 5vw;
-  border-radius: 6px;
+  border-radius: 10px;
   margin-bottom: 5vw;
 }
 
@@ -26,7 +26,6 @@ page {
 }
 
 .colorItem {
-  background-color: tomato;
   width: 16vw;
   height: 16vw;
   border-radius: 8vw;
@@ -56,4 +55,5 @@ page {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 5vw;
 }

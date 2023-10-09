@@ -2,14 +2,9 @@
 
 <image class="image" src="{{imgPath}}" mode="widthFix"></image>
 
-<div class="colorBoard">
-  <div class="colorItem"></div>
-  <div class="colorItem"></div>
-  <div class="colorItem"></div>
-  <div class="colorItem"></div>
-  <div class="colorItem"></div>
-</div>
-
+<view class="colorBoard">
+  <view class="colorItem" wx:for="{{colors}}" wx:key="*this" style="background-color: rgb({{item}});"></view>
+</view> 
 <div class="btnBoard">
   <van-button color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="selectImageClick">选择图片</van-button>
   <van-button color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="convertGray">转灰图</van-button>

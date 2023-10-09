@@ -1,12 +1,15 @@
 // pages/HUPickImage/HUPickImage.ts
 let HUOpenCVModule = {};
 require.async('../../OpenCVModule/HUOpenCVModule.js').then((mod) => {
-  HUOpenCVModule = mod;
-  // console.info('mod', HUOpenCVModule.logVersion());
-}) 
-.catch(({ errMsg, mod }) => {
-  console.error(`path: ${mod}, ${errMsg}`)
-})
+    HUOpenCVModule = mod;
+    // console.info('mod', HUOpenCVModule.logVersion());
+  })
+  .catch(({
+    errMsg,
+    mod
+  }) => {
+    console.error(`path: ${mod}, ${errMsg}`)
+  })
 
 import Dialog from '@vant/weapp/dialog/dialog';
 
@@ -28,6 +31,13 @@ Page({
     canvasDom: {},
     canvasWidth: 0,
     canvasHeight: 0,
+    colors: [
+      [255, 255, 255],
+      [255, 255, 255],
+      [255, 255, 255],
+      [255, 255, 255],
+      [255, 255, 255]
+    ],
   },
 
   /**
@@ -69,11 +79,15 @@ Page({
   },
 
   pop() {
-    this.setData({ show: true })
+    this.setData({
+      show: true
+    })
   },
 
   onClose() {
-    this.setData({ show: false });
+    this.setData({
+      show: false
+    });
   },
 
   convertGray() {
@@ -102,6 +116,10 @@ Page({
       imgBase64: base64,
       imgMat: mat
     })
+    const colors = await HUOpenCVModule.getKmeans(mat, 5);
+    this.setData({
+      colors: colors
+    })
 
     HUOpenCVModule.show(this.data.canvasDom, mat);
   },
@@ -111,7 +129,7 @@ Page({
       mesage: '保存成功',
       theme: 'round-button',
     })
-  
+
     return;
     wx.canvasToTempFilePath({
       canvas: this.data.canvasDom,

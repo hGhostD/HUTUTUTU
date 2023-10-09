@@ -38,7 +38,8 @@
       "outputPath": ""
     },
     "ignoreUploadUnusedFiles": true,
-    "ignoreDevUnusedFiles": false
+    "ignoreDevUnusedFiles": false,
+    "condition": false
   },
   "compileType": "miniprogram",
   "condition": {},

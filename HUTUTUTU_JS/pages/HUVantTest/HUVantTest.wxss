@@ -1,1 +1,6 @@
 /* pages/HUVantTest/HUVantTest.wxss */
+.button_view {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10vw; /* 左右边距为 20px */
+}
