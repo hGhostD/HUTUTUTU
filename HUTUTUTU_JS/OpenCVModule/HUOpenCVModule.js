@@ -48,12 +48,13 @@ const HUOpenCVModule = {
     cv.cvtColor(mat, result, type);
     return result;
   },
+
   convertGrayToRGBA(mat) {
     let dst = new cv.Mat();
     cv.cvtColor(mat, dst, cv.COLOR_GRAY2RGBA);
     return dst;
   },
-
+  // 聚合运算
   async getKmeans(mat, k) {
 
     const width = 100;
@@ -88,6 +89,27 @@ const HUOpenCVModule = {
     labels.delete();
     centers.delete();
     return r;
+  },
+
+  // 计算图片清晰度
+  async calculateSharpness(mat) {
+
+    let rect = new cv.Rect(mat.cols / 2 - 50, mat.rows / 2 - 50, 100, 100);
+    let gray = mat.roi(rect);
+    
+    const channle = mat.channels();
+
+    if (channle != 1) {
+      gray = this.convertToGray(gray);
+    }
+
+    let sobel = new cv.Mat();
+    let myMean = new cv.Mat(1, 4, cv.CV_64F);
+    let myStddev = new cv.Mat(1, 4, cv.CV_64F);
+    cv.Laplacian(gray, sobel, cv.CV_64F);
+    cv.meanStdDev(sobel, myMean, myStddev);
+
+    return myStddev.doubleAt(0, 0);
   }
 }
 

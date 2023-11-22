@@ -112,10 +112,19 @@ Page({
       imgBase64: base64,
       imgMat: mat
     })
+    /**
+     * 
+    
     const colors = await HUOpenCVModule.getKmeans(mat, 5);
     this.setData({
       colors: colors
     })
+    */
+    
+    let sharp = await HUOpenCVModule.calculateSharpness(mat);
+    console.log('shaprness:::', sharp);
+    //let sharp2 = HUOpenCVModule.calculateMatSharpness(mat);
+    //console.log('shaprness2:::', sharp2);
 
     HUOpenCVModule.show(this.data.canvasDom, mat);
   },
