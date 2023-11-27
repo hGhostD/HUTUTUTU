@@ -45,7 +45,7 @@ Page({
       })
       .exec((res) => {
         const canvas2d = res[0].node;
-        console.info("111", canvas2d);
+        console.info(canvas2d);
         // 设置画布的宽度和高度
         canvas2d.width = res[0].width;
         canvas2d.height = res[0].height;

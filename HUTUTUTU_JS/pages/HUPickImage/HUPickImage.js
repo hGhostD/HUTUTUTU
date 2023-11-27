@@ -22,7 +22,6 @@ Page({
   data: {
     imgPath: 'test.jpg',
     show: false,
-    btnStyle: "margin-left: 10px; width: 30vw; height: 10vw;",
     imgBase64: '',
     imgMat: {},
     canvasDom: {},
@@ -103,6 +102,7 @@ Page({
           canvasHeight: res.height / res.width * canvasW,
         })
       }
+
     });
 
     const mat = await HUOpenCVModule.readImage(imgSrc);
@@ -121,21 +121,17 @@ Page({
     })
     */
     
-    let sharp = await HUOpenCVModule.calculateSharpness(mat);
-    console.log('shaprness:::', sharp);
-    //let sharp2 = HUOpenCVModule.calculateMatSharpness(mat);
-    //console.log('shaprness2:::', sharp2);
-
+    // let sharp = await HUOpenCVModule.calculateSharpness(mat);
+    // console.log('shaprness:::', sharp);
+    let cal = HUOpenCVModule.drawHistogram(mat);
+    // console.log(cal.rows, cal.cols);
+    // console.log(this.data.canvasHeight, this.data.canvasWidth);
     HUOpenCVModule.show(this.data.canvasDom, mat);
+
+    mat.delete();
   },
 
   saveImageClick() {
-    Dialog.alert({
-      mesage: '保存成功',
-      theme: 'round-button',
-    })
-
-    return;
     wx.canvasToTempFilePath({
       canvas: this.data.canvasDom,
       success(res) {

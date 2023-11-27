@@ -8,12 +8,17 @@ page {
   background-color: saddlebrown;
 }
 
-.image {
-  width: 90vw;
-  margin: auto;
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 5vw;
-  border-radius: 10px;
   margin-bottom: 5vw;
+}
+.image {
+  margin: auto;
+  width: 90vw;
+  border-radius: 10px;
 }
 
 .colorBoard {

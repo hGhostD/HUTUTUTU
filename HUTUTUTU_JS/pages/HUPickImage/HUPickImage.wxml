@@ -1,6 +1,8 @@
 <!--pages/HUPickImage/HUPickImage.wxml-->
 
-<image class="image" src="{{imgPath}}" mode="widthFix"></image>
+<view class="img-container">
+  <image class="image" src="{{imgPath}}" mode="widthFix" />
+</view>
 
 <view class="colorBoard">
   <view class="colorItem" wx:for="{{colors}}" wx:key="item" style="background-color: rgb({{item}});"></view>
@@ -14,6 +16,5 @@
 <view class="canvasStyle">
   <canvas id="myCanvas" type="2d" style="width:{{canvasWidth}}px; height:{{canvasHeight}}px; "></canvas>
 </view>
-
 
 <van-dialog id="van-dialog" />
