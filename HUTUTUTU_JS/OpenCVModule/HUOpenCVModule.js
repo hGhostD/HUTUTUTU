@@ -28,7 +28,6 @@ const HUOpenCVModule = {
 
   convertMatToBase64(mat) {
     let base64 = tool.convertMatToBase64(mat);
-    // mat.delete();
     return base64;
   },
 

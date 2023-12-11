@@ -40,26 +40,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.initCanvas(myCanvas);
-  },
-
-  initCanvas(canvasId) {
-    var _that = this;
-    wx.createSelectorQuery()
-      .select('#' + canvasId)
-      .fields({
-        node: true,
-        size: true
-      })
-      .exec((res) => {
-        const canvas2d = res[0].node;
-        // 设置画布的宽度和高度
-        canvas2d.width = res[0].width;
-        canvas2d.height = res[0].height;
-        _that.setData({
-          canvasDom: canvas2d
-        });
-      });
+    
   },
 
   selectImageClick() {
@@ -94,22 +75,21 @@ Page({
   async loadImg(imgSrc) {
     let _that = this;
     let canvasW = wx.getSystemInfoSync().windowWidth * 0.9;
+
     wx.getImageInfo({
       src: imgSrc,
       success(res) {
-        _that.setData({
-          canvasWidth: canvasW,
-          canvasHeight: res.height / res.width * canvasW,
-        })
+        const canvasH = res.height / res.width * canvasW;
       }
 
     });
 
     const mat = await HUOpenCVModule.readImage(imgSrc);
-    const base64 = HUOpenCVModule.convertMatToBase64(mat);
+    const res = HUOpenCVModule.convertMatToBase64(mat);
+
     this.setData({
       imgPath: imgSrc,
-      imgBase64: base64,
+      imgBase64: res,
       imgMat: mat
     })
     /**
@@ -126,8 +106,11 @@ Page({
     let cal = HUOpenCVModule.drawHistogram(mat);
     // console.log(cal.rows, cal.cols);
     // console.log(this.data.canvasHeight, this.data.canvasWidth);
-    HUOpenCVModule.show(this.data.canvasDom, mat);
-
+    const result = HUOpenCVModule.convertMatToBase64(cal);
+    _that.setData({
+      imgBase64: result
+    })
+    
     mat.delete();
   },
 

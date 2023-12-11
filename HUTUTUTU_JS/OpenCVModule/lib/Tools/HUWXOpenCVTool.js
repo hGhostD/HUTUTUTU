@@ -47,7 +47,12 @@ const S2iOpenCVTool = {
     off_ctx.height = mat.rows;
     let result = off_cav.createImageData(mat.data, mat.cols, mat.rows);
     off_ctx.putImageData(result, 0, 0);
-    const base64 = off_cav.toDataURL('image/jpeg', 0.8);
+    let base64;
+    if (mat.channels() == 4) {
+      base64 = off_cav.toDataURL('image/png');
+    } else {
+      base64 = off_cav.toDataURL('image/jpeg', 0.8);
+    }
     return base64;
   },
   /**

@@ -1,10 +1,8 @@
 /* pages/HUPickImage/HUPickImage.wxss */
 
-page {
-  display: flex;
-  flex-direction: column;
+.page {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: saddlebrown;
 }
 
@@ -15,6 +13,7 @@ page {
   margin-top: 5vw;
   margin-bottom: 5vw;
 }
+
 .image {
   margin: auto;
   width: 90vw;
@@ -26,8 +25,6 @@ page {
   flex-direction: row;
   justify-content: space-between;
   margin: 0 5vw;
-  /* margin-bottom: 0; */
-  /* border: red 1px solid; */
 }
 
 .colorItem {
@@ -56,9 +53,10 @@ page {
   width: 80vw;
 }
 
-.canvasStyle {
+.image-result {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5vw;
+  margin-top: 10vw;
+  margin-bottom: 10vw;
 }
