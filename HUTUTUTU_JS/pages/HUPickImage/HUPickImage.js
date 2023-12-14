@@ -102,8 +102,8 @@ Page({
     */
     
     // let sharp = await HUOpenCVModule.calculateSharpness(mat);
-    // console.log('shaprness:::', sharp);
     let cal = HUOpenCVModule.drawHistogram(mat);
+    let color = HUOpenCVModule.getMainColor(mat);
     // console.log(cal.rows, cal.cols);
     // console.log(this.data.canvasHeight, this.data.canvasWidth);
     const result = HUOpenCVModule.convertMatToBase64(cal);

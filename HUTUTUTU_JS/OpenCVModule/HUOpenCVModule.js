@@ -119,22 +119,23 @@ const HUOpenCVModule = {
 
   },
 
-  calcHist(mat) {
+  calcHist(mat, histSize, ranges, channels) {
     const src = new cv.Mat();
     cv.cvtColor(mat, src, cv.COLOR_RGBA2GRAY, 0);
     let srcVec = new cv.MatVector();
     srcVec.push_back(src);
     let hist = new cv.Mat();
-    let histSize = [256];
-    let ranges = [0, 256];
-    let channels = [0];
-    // You can try more different parameters
     cv.calcHist(srcVec, channels, new cv.Mat(), hist, histSize, ranges);
+    srcVec.delete();
+    src.delete();
     return hist;
   },
   // 绘制直方图
   drawHistogram(mat) {
-    const hist = this.calcHist(mat);
+    let histSize = [256];
+    let ranges = [0, 256];
+    let channels = [0]
+    const hist = this.calcHist(mat, histSize, ranges, channels);
     let minMax = cv.minMaxLoc(hist);
     // 高度固定为 144 + 20，144 是宽高比为 16：9 计算得来。宽度固定为 256
     const height = 144 + 20;
@@ -149,6 +150,33 @@ const HUOpenCVModule = {
     }
     cv.cvtColor(histogram, histogram, cv.COLOR_GRAY2RGBA, 0);
     return histogram;
+  },
+
+  getMainColor(src) {
+
+    let histSize = [180]; // HSV颜色空间的色调范围为0-179
+    let ranges = [0, 180]; // 色调的范围
+    let channels = [0]; // 色调通道
+
+    const hist = this.calcHist(src, histSize, ranges, channels);
+    let maxVal = cv.minMaxLoc(hist).maxVal;
+    let maxIndex = hist.data32F.indexOf(maxVal);
+    let hue = maxIndex * (180 / histSize[0]);
+    // Convert hue to RGB color space
+    let rgbColor = new cv.Mat(1, 1, cv.CV_8UC3);
+    rgbColor.setTo(new cv.Scalar(hue, 255, 255));
+    cv.cvtColor(rgbColor, rgbColor, cv.COLOR_HSV2RGB);
+
+    // Get the dominant color in RGB format
+    let dominantColor = rgbColor.data;
+
+    // Clean up
+    src.delete();
+    hist.delete();
+    rgbColor.delete();
+
+    // Use dominantColor for further processing
+    console.log(dominantColor);
   }
 }
 
