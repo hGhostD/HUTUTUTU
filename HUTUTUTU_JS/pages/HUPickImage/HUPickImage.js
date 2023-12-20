@@ -1,4 +1,6 @@
 // pages/HUPickImage/HUPickImage.ts
+const Colorthief = require('miniapp-color-thief').default;
+
 let HUOpenCVModule = {};
 require.async('../../OpenCVModule/HUOpenCVModule.js').then((mod) => {
     HUOpenCVModule = mod;
@@ -10,9 +12,7 @@ require.async('../../OpenCVModule/HUOpenCVModule.js').then((mod) => {
     console.error(`path: ${mod}, ${errMsg}`)
   })
 // import Dialog from '@vant/weapp/dialog/dialog';
-const Dialog = require('@vant/weapp/dialog/dialog')
-
-const myCanvas = 'myCanvas';
+const Dialog = require('@vant/weapp/dialog/dialog');
 
 Page({
 
@@ -40,7 +40,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    
+    // console.log(Colorthief);
   },
 
   selectImageClick() {
@@ -85,12 +85,13 @@ Page({
     });
 
     const mat = await HUOpenCVModule.readImage(imgSrc);
+    let palette = Colorthief(mat.data).palette(5).get();
     const res = HUOpenCVModule.convertMatToBase64(mat);
-
     this.setData({
       imgPath: imgSrc,
       imgBase64: res,
-      imgMat: mat
+      imgMat: mat,
+      colors: palette
     })
     /**
      * 

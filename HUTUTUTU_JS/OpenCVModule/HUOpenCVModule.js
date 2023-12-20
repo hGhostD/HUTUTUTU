@@ -153,30 +153,6 @@ const HUOpenCVModule = {
   },
 
   getMainColor(src) {
-
-    let histSize = [180]; // HSV颜色空间的色调范围为0-179
-    let ranges = [0, 180]; // 色调的范围
-    let channels = [0]; // 色调通道
-
-    const hist = this.calcHist(src, histSize, ranges, channels);
-    let maxVal = cv.minMaxLoc(hist).maxVal;
-    let maxIndex = hist.data32F.indexOf(maxVal);
-    let hue = maxIndex * (180 / histSize[0]);
-    // Convert hue to RGB color space
-    let rgbColor = new cv.Mat(1, 1, cv.CV_8UC3);
-    rgbColor.setTo(new cv.Scalar(hue, 255, 255));
-    cv.cvtColor(rgbColor, rgbColor, cv.COLOR_HSV2RGB);
-
-    // Get the dominant color in RGB format
-    let dominantColor = rgbColor.data;
-
-    // Clean up
-    src.delete();
-    hist.delete();
-    rgbColor.delete();
-
-    // Use dominantColor for further processing
-    console.log(dominantColor);
   }
 }
 

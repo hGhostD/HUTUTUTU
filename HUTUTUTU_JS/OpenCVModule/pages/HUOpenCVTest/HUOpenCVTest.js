@@ -1,5 +1,6 @@
-// OpenCVModule/pages/HUOpenCVTest/HUOpenCVTest.ts
-let HUOpenCVModule = require('../../HUOpenCVModule');
+// let HUOpenCVModule = require('../../HUOpenCVModule');
+import colorThief from "miniapp-color-thief";
+import HUOpenCVModule from "../../HUOpenCVModule";
 
 Page({
 
@@ -25,7 +26,11 @@ Page({
   async loadImgClick() {
     const imgPath = '../../images/1.jpg';
     const mat = await HUOpenCVModule.readImage(imgPath);
-    console.info(mat);
+    console.info(mat.data);
+    let palette = colorThief(mat.data)
+      .palette(5)
+      .get();
+    console.log(palette); // [[0,0,0],[0,0,0],[0,0,0]...]
     HUOpenCVModule.show(this.data.canvasDom, mat);
     const base64 = HUOpenCVModule.convertMatToBase64(mat);
     
@@ -45,7 +50,6 @@ Page({
       })
       .exec((res) => {
         const canvas2d = res[0].node;
-        console.info(canvas2d);
         // 设置画布的宽度和高度
         canvas2d.width = res[0].width;
         canvas2d.height = res[0].height;
