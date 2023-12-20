@@ -27,12 +27,6 @@
   margin: 0 5vw;
 }
 
-.colorItem {
-  width: 16vw;
-  height: 16vw;
-  border-radius: 8vw;
-}
-
 .btnBoard {
   display: flex;
   flex-direction: row;

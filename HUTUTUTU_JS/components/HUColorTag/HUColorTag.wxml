@@ -1,0 +1,5 @@
+<!--components/HUColorTag/HUColorTag.wxml-->
+<view class="colorBoard" bind:tap="tapClick">
+<view class="colorItem" style="background-color: rgb({{color}});"></view>
+<label class="colorTitle">{{title}}</label>
+</view>

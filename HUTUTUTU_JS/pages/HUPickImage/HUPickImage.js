@@ -34,6 +34,9 @@ Page({
       [255, 255, 255],
       [255, 255, 255]
     ],
+    colorsText: [
+      "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff",
+    ]
   },
 
   /**
@@ -85,13 +88,17 @@ Page({
     });
 
     const mat = await HUOpenCVModule.readImage(imgSrc);
-    let palette = Colorthief(mat.data).palette(5).get();
+    // 计算图片主题色
+    const thief = Colorthief(mat.data).palette(5);
+    const colors = thief.get();
+    const colorsText = thief.getHex();
     const res = HUOpenCVModule.convertMatToBase64(mat);
     this.setData({
       imgPath: imgSrc,
       imgBase64: res,
       imgMat: mat,
-      colors: palette
+      colors: colors,
+      colorsText: colorsText
     })
     /**
      * 
@@ -101,17 +108,14 @@ Page({
       colors: colors
     })
     */
-    
+
     // let sharp = await HUOpenCVModule.calculateSharpness(mat);
     let cal = HUOpenCVModule.drawHistogram(mat);
-    let color = HUOpenCVModule.getMainColor(mat);
-    // console.log(cal.rows, cal.cols);
-    // console.log(this.data.canvasHeight, this.data.canvasWidth);
     const result = HUOpenCVModule.convertMatToBase64(cal);
     _that.setData({
       imgBase64: result
     })
-    
+
     mat.delete();
   },
 

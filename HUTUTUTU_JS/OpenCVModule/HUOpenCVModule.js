@@ -151,9 +151,6 @@ const HUOpenCVModule = {
     cv.cvtColor(histogram, histogram, cv.COLOR_GRAY2RGBA, 0);
     return histogram;
   },
-
-  getMainColor(src) {
-  }
 }
 
 module.exports = HUOpenCVModule;

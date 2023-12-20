@@ -1,0 +1,20 @@
+/* components/HUColorTag/HUColorTag.wxss */
+
+.colorBoard {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 垂直居中对齐 */
+  /* 其他样式属性 */
+}
+
+.colorItem {
+  width: 16vw;
+  height: 16vw;
+  border-radius: 8vw;
+}
+
+.colorTitle {
+  text-align: center; /* 水平居中对齐 */
+  margin-top: 3vw;
+  font-size: 12px;
+}

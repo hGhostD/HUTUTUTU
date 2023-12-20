@@ -7,7 +7,9 @@
   </view>
 
   <view class="colorBoard">
-    <view class="colorItem" wx:for="{{colors}}" wx:key="item" style="background-color: rgb({{item}});"></view>
+    <block wx:for="{{[1,2,3,4,5]}}" wx:key="index">
+      <color-tag  color="{{colors[index]}}" title="{{colorsText[index]}}" ></color-tag>
+    </block>
   </view>
   <view class="btnBoard">
     <van-button color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="selectImageClick">选择图片</van-button>
