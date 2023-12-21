@@ -11,8 +11,6 @@ require.async('../../OpenCVModule/HUOpenCVModule.js').then((mod) => {
   }) => {
     console.error(`path: ${mod}, ${errMsg}`)
   })
-// import Dialog from '@vant/weapp/dialog/dialog';
-const Dialog = require('@vant/weapp/dialog/dialog');
 
 Page({
 
@@ -21,12 +19,9 @@ Page({
    */
   data: {
     imgPath: 'test.jpg',
-    show: false,
     imgBase64: '',
     imgMat: {},
     canvasDom: {},
-    canvasWidth: 0,
-    canvasHeight: 0,
     colors: [
       [255, 255, 255],
       [255, 255, 255],
@@ -36,14 +31,15 @@ Page({
     ],
     colorsText: [
       "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff",
-    ]
+    ],
+    revertColor: [255, 255, 255] 
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    // console.log(Colorthief);
+    this.loadImg(this.data.imgPath);
   },
 
   selectImageClick() {
@@ -58,57 +54,28 @@ Page({
     })
   },
 
-  pop() {
-    this.setData({
-      show: true
-    })
-  },
-
-  onClose() {
-    this.setData({
-      show: false
-    });
-  },
-
   convertGray() {
-    let gray = HUOpenCVModule.convertToGray(this.data.imgMat);
-    HUOpenCVModule.show(this.data.canvasDom, gray);
+    console.log(this.data.imgMat.size());
+    // let gray = HUOpenCVModule.convertToGray(this.data.imgMat);
+    // HUOpenCVModule.show(this.data.canvasDom, gray);
+
   },
 
   async loadImg(imgSrc) {
     let _that = this;
-    let canvasW = wx.getSystemInfoSync().windowWidth * 0.9;
-
-    wx.getImageInfo({
-      src: imgSrc,
-      success(res) {
-        const canvasH = res.height / res.width * canvasW;
-      }
-
-    });
-
     const mat = await HUOpenCVModule.readImage(imgSrc);
     // 计算图片主题色
     const thief = Colorthief(mat.data).palette(5);
     const colors = thief.get();
     const colorsText = thief.getHex();
-    const res = HUOpenCVModule.convertMatToBase64(mat);
+    const revertColor = [255-colors[0][0], 255-colors[0][1],255-colors[0][2]];
     this.setData({
       imgPath: imgSrc,
-      imgBase64: res,
       imgMat: mat,
       colors: colors,
-      colorsText: colorsText
+      colorsText: colorsText,
+      revertColor: revertColor
     })
-    /**
-     * 
-    
-    const colors = await HUOpenCVModule.getKmeans(mat, 5);
-    this.setData({
-      colors: colors
-    })
-    */
-
     // let sharp = await HUOpenCVModule.calculateSharpness(mat);
     let cal = HUOpenCVModule.drawHistogram(mat);
     const result = HUOpenCVModule.convertMatToBase64(cal);
@@ -116,23 +83,20 @@ Page({
       imgBase64: result
     })
 
+    cal.delete();
     mat.delete();
   },
 
-  saveImageClick() {
-    wx.canvasToTempFilePath({
-      canvas: this.data.canvasDom,
-      success(res) {
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
-          success: (res) => {
-            console.info('保存成功', res);
+  saveImageClick(res) {
+    console.log(res);
+    wx.saveImageToPhotosAlbum({
+      filePath: res.tempFilePath,
+      success: (res) => {
+        console.info('保存成功', res);
 
-          },
-          fail: (error) => {
-            console.error('保存失败', error);
-          }
-        })
+      },
+      fail: (error) => {
+        console.error('保存失败', error);
       }
     })
   }

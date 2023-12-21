@@ -3,7 +3,7 @@
 .page {
   width: 100vw;
   min-height: 100vh;
-  background-color: saddlebrown;
+  padding-top: 20vw;
 }
 
 .img-container {

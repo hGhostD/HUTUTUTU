@@ -2,6 +2,7 @@
   "pages":[
     "pages/HUPickImage/HUPickImage",
     "pages/HUSaveImage/HUSaveImage",
+    "pages/HUCropImage/HUCropImage",
     "pages/HUVantTest/HUVantTest"
   ],
   "window":{
@@ -20,6 +21,7 @@
     }
   ],
   "usingComponents": {
+    "van-dialog": "@vant/weapp/dialog/index",
     "van-button": "@vant/weapp/button/index"
   }
 }

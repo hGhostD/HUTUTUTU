@@ -1,6 +1,7 @@
 <!--pages/HUPickImage/HUPickImage.wxml-->
 
-<view class="page">
+<view class="page" style="background-color: rgb({{revertColor}})">
+ 
   <view style="height: 5vw;"></view>
   <view class="img-container">
     <image class="image" src="{{imgPath}}" mode="widthFix" />
@@ -12,18 +13,17 @@
     </block>
   </view>
   <view class="btnBoard">
-    <van-button color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="selectImageClick">选择图片</van-button>
-    <van-button color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="convertGray">转灰图</van-button>
-    <van-button color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="saveImageClick">识别矩形</van-button>
+    <van-button icon="star-o" type="primary" color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="selectImageClick">选择图片</van-button>
+    <van-button icon="star-o" type="primary" color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="convertGray">转灰图</van-button>
+    <van-button icon="star-o" type="primary" color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="saveImageClick">保存图片</van-button>
   </view>
 
   <view class="image-result">
-    <image class="image" src="{{imgBase64}}" mode="widthFix" />
+    <image show-menu-by-longpress class="image" src="{{imgBase64}}" mode="widthFix" />
   </view>
 
   <view style="height: 5vw;"></view>
-
-
+  
 </view>
 
 <!-- <van-dialog id="van-dialog" /> -->
