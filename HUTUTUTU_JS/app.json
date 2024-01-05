@@ -3,7 +3,8 @@
     "pages/HUPickImage/HUPickImage",
     "pages/HUSaveImage/HUSaveImage",
     "pages/HUCropImage/HUCropImage",
-    "pages/HUVantTest/HUVantTest"
+    "pages/HUVantTest/HUVantTest",
+    "pages/cropper/cropper"
   ],
   "window":{
     "backgroundTextStyle":"light",

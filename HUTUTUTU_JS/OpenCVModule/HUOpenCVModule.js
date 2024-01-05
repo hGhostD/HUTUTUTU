@@ -38,7 +38,6 @@ const HUOpenCVModule = {
 
   convertToGray(mat) {
     let result = new cv.Mat();
-    console.debug('mat channels:', mat.channels());
     let channel = mat.channels();
     let type = cv.COLOR_BGRA2GRAY;
     if (channel == 1) {
@@ -49,6 +48,7 @@ const HUOpenCVModule = {
       type = cv.COLOR_RGBA2GRAY;
     }
     cv.cvtColor(mat, result, type);
+    cv.cvtColor(result, result, cv.COLOR_GRAY2RGBA);
     return result;
   },
 

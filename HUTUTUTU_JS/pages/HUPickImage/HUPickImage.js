@@ -20,6 +20,8 @@ Page({
   data: {
     imgPath: 'test.jpg',
     imgBase64: '',
+    imgWidth: 0,
+    imgHeight: 0,
     imgMat: {},
     canvasDom: {},
     colors: [
@@ -32,7 +34,7 @@ Page({
     colorsText: [
       "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff",
     ],
-    revertColor: [255, 255, 255] 
+    revertColor: [255, 255, 255]
   },
 
   /**
@@ -42,6 +44,12 @@ Page({
     this.loadImg(this.data.imgPath);
   },
 
+  onShow() {
+    console.log(getApp().globalData.imgSrc);
+    this.setData({
+      imgBase64: getApp().globalData.imgSrc
+    })
+  },
   selectImageClick() {
     wx.chooseMedia({
       count: 1,
@@ -55,9 +63,13 @@ Page({
   },
 
   convertGray() {
-    console.log(this.data.imgMat.size());
-    // let gray = HUOpenCVModule.convertToGray(this.data.imgMat);
-    // HUOpenCVModule.show(this.data.canvasDom, gray);
+    let gray = HUOpenCVModule.convertToGray(this.data.imgMat);
+    const result = HUOpenCVModule.convertMatToBase64(gray);
+    this.setData({
+      imgBase64: result,
+      imgWidth: gray.cols,
+      imgHeight: gray.rows
+    })
 
   },
 
@@ -68,10 +80,12 @@ Page({
     const thief = Colorthief(mat.data).palette(5);
     const colors = thief.get();
     const colorsText = thief.getHex();
-    const revertColor = [255-colors[0][0], 255-colors[0][1],255-colors[0][2]];
+    const revertColor = [255 - colors[0][0], 255 - colors[0][1], 255 - colors[0][2]];
     this.setData({
       imgPath: imgSrc,
       imgMat: mat,
+      imgWidth: mat.cols,
+      imgHeight: mat.rows,
       colors: colors,
       colorsText: colorsText,
       revertColor: revertColor
@@ -84,11 +98,35 @@ Page({
     })
 
     cal.delete();
-    mat.delete();
   },
 
   saveImageClick(res) {
-    console.log(res);
+
+    getApp().globalData.imageBase64 = this.data.imgBase64;
+    getApp().globalData.imageWidth = this.data.imgWidth;
+    getApp().globalData.imageHeight = this.data.imgHeight;
+
+    const imgW = this.data.imgWidth;
+    const imgH = this.data.imgHeight;
+    const imgPath = wx.env.USER_DATA_PATH + "/poster" + "share" + ".png";
+    //如果图片字符串不含要清空的前缀,可以不执行下行代码.
+    const imageData = this.data.imgBase64.replace(/^data:image\/\w+;base64,/, "");
+    const fs = wx.getFileSystemManager();
+    fs.writeFileSync(imgPath, imageData, "base64");
+    fs.close()
+    console.log('===', imgPath);
+    getApp().globalData.imageBase64 = imgPath;
+
+    wx.navigateTo({
+      url: '/pages/cropper/cropper'
+    })
+
+
+
+    
+
+    return;
+
     wx.saveImageToPhotosAlbum({
       filePath: res.tempFilePath,
       success: (res) => {
@@ -99,5 +137,6 @@ Page({
         console.error('保存失败', error);
       }
     })
-  }
+  },
+
 })

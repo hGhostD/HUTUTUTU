@@ -4,7 +4,7 @@
  
   <view style="height: 5vw;"></view>
   <view class="img-container">
-    <image class="image" src="{{imgPath}}" mode="widthFix" />
+    <image catch:touchmove="move" class="image" src="{{imgPath}}" mode="widthFix" />
   </view>
 
   <view class="colorBoard">
@@ -15,7 +15,7 @@
   <view class="btnBoard">
     <van-button icon="star-o" type="primary" color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="selectImageClick">选择图片</van-button>
     <van-button icon="star-o" type="primary" color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="convertGray">转灰图</van-button>
-    <van-button icon="star-o" type="primary" color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="saveImageClick">保存图片</van-button>
+    <van-button icon="star-o" type="primary" color="linear-gradient(to right, #1989FA, #4bb0ff)" bindclick="saveImageClick">裁切图片</van-button>
   </view>
 
   <view class="image-result">
