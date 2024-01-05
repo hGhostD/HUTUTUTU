@@ -39,7 +39,7 @@
     },
     "ignoreUploadUnusedFiles": true,
     "ignoreDevUnusedFiles": false,
-    "condition": false
+    "condition": true
   },
   "compileType": "miniprogram",
   "condition": {},

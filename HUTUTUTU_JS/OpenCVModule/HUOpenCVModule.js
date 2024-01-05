@@ -38,7 +38,6 @@ const HUOpenCVModule = {
 
   convertToGray(mat) {
     let result = new cv.Mat();
-    console.debug('mat channels:', mat.channels());
     let channel = mat.channels();
     let type = cv.COLOR_BGRA2GRAY;
     if (channel == 1) {
@@ -49,6 +48,7 @@ const HUOpenCVModule = {
       type = cv.COLOR_RGBA2GRAY;
     }
     cv.cvtColor(mat, result, type);
+    cv.cvtColor(result, result, cv.COLOR_GRAY2RGBA);
     return result;
   },
 
@@ -73,7 +73,7 @@ const HUOpenCVModule = {
     for (var y = 0; y < dst.rows; y++)
       for (var x = 0; x < dst.cols; x++)
         for (var z = 0; z < 3; z++)
-          sample.floatPtr(y + x * mat.rows)[z] = mat.ucharPtr(y, x)[z];
+          sample.floatPtr(y + x * dst.rows)[z] = dst.ucharPtr(y, x)[z];
     // 颜色量化
     const criteria = new cv.TermCriteria(cv.TermCriteria_EPS + cv.TermCriteria_COUNT, 10, 1.0);
     const labels = new cv.Mat();
@@ -91,6 +91,7 @@ const HUOpenCVModule = {
     sample.delete();
     labels.delete();
     centers.delete();
+    criteria.delete();
     return r;
   },
 

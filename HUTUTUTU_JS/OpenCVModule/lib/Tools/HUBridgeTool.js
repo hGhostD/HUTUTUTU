@@ -4,7 +4,7 @@ const wxTool = require('./HUWXOpenCVTool')
 const HUBridgeTool = {
 
   async getImageDataWithPath(imgPath) {
-    if ((typeof(wx) != undefined)) {
+    if ((typeof(wx) != 'undefined')) {
       return await wxTool.getImageDataWithPath(imgPath);
     }
 
@@ -12,7 +12,7 @@ const HUBridgeTool = {
   },
 
   convertMatToBase64(mat) {
-    if ((typeof(wx) != undefined)) {
+    if ((typeof(wx) != 'undefined')) {
       return wxTool.convertMatToBase64(mat);
     }
 
@@ -20,7 +20,7 @@ const HUBridgeTool = {
   },
 
   convertImgPathToBase64(path) {
-    if ((typeof(wx) != undefined)) {
+    if ((typeof(wx) != 'undefined')) {
        return wxTool.convertImgPathToBase64(path);
     }
 

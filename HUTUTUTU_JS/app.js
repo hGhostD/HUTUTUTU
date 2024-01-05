@@ -14,6 +14,10 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    imageBase64: '',
+    imageFilePath: '',
+    imageWidth: 0,
+    imageHeight: 0,
+    imageObject: {}
   }
 })
