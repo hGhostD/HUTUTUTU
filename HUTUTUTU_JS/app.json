@@ -2,9 +2,7 @@
   "pages":[
     "pages/HUPickImage/HUPickImage",
     "pages/HUSaveImage/HUSaveImage",
-    "pages/HUCropImage/HUCropImage",
-    "pages/HUVantTest/HUVantTest",
-    "pages/cropper/cropper"
+    "pages/HUVantTest/HUVantTest"
   ],
   "window":{
     "backgroundTextStyle":"light",
