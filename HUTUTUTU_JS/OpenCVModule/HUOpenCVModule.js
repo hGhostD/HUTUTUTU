@@ -4,13 +4,40 @@ global.wasm_url = '/OpenCVModule/lib/OpenCV/opencv_js.wasm.br'
 const cv = require("./lib/OpenCV/opencv");
 const tool = require('./lib/Tools/HUBridgeTool');
 
+// wasm 是异步加载的，初始化完成前 cv.Mat / cv.cvtColor 都不存在。
+// 这里做个就绪等待，避免页面 require.async 后立刻调用导致时序问题。
+function waitForReady(timeout = 15000) {
+  if (cv.Mat && cv.cvtColor) {
+    return Promise.resolve();
+  }
+  return new Promise((resolve, reject) => {
+    const start = Date.now();
+    const timer = setInterval(() => {
+      if (cv.Mat && cv.cvtColor) {
+        clearInterval(timer);
+        resolve();
+      } else if (Date.now() - start > timeout) {
+        clearInterval(timer);
+        reject(new Error('[opencv] 初始化超时，wasm 未就绪'));
+      }
+    }, 16);
+  });
+}
+
 const HUOpenCVModule = {
 
-  logVersion() {
+  // 供外部等待 wasm 加载完成
+  ready() {
+    return waitForReady();
+  },
+
+  async logVersion() {
+    await waitForReady();
     console.info(' ==== 加载 OpenCV 版本 ==== \n', cv.getBuildInformation());
   },
 
   async readImage(imgPath) {
+    await waitForReady();
     const imgData = await tool.getImageDataWithPath(imgPath);
     const mat = cv.imread(imgData);
     if (mat.rows > 1000) {
@@ -73,7 +100,7 @@ const HUOpenCVModule = {
     for (var y = 0; y < dst.rows; y++)
       for (var x = 0; x < dst.cols; x++)
         for (var z = 0; z < 3; z++)
-          sample.floatPtr(y + x * dst.rows)[z] = dst.ucharPtr(y, x)[z];
+          sample.floatPtr(y + x * mat.rows)[z] = mat.ucharPtr(y, x)[z];
     // 颜色量化
     const criteria = new cv.TermCriteria(cv.TermCriteria_EPS + cv.TermCriteria_COUNT, 10, 1.0);
     const labels = new cv.Mat();
@@ -91,7 +118,6 @@ const HUOpenCVModule = {
     sample.delete();
     labels.delete();
     centers.delete();
-    criteria.delete();
     return r;
   },
 

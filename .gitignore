@@ -1,2 +1,6 @@
 node_modules/
 miniprogram_npm/
+
+# macOS 元数据（exFAT 卷上每个文件都会带一个 ._xxx 伴生文件）
+.DS_Store
+._*

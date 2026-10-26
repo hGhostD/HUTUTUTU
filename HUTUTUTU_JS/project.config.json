@@ -39,7 +39,13 @@
     },
     "ignoreUploadUnusedFiles": true,
     "ignoreDevUnusedFiles": false,
-    "condition": true
+    "condition": true,
+    "compileWorklet": false,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "swc": false,
+    "disableSWC": true
   },
   "compileType": "miniprogram",
   "condition": {},
@@ -48,8 +54,23 @@
     "tabSize": 2
   },
   "packOptions": {
-    "ignore": [],
+    "ignore": [
+      {
+        "type": "prefix",
+        "value": "._"
+      },
+      {
+        "type": "file",
+        "value": ".DS_Store"
+      },
+      {
+        "type": "file",
+        "value": "clean-appledouble.sh"
+      }
+    ],
     "include": []
   },
-  "appid": "wxb4cf445380df3089"
+  "appid": "wxb4cf445380df3089",
+  "libVersion": "3.5.1",
+  "simulatorPluginLibVersion": {}
 }

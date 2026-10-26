@@ -1,4 +1,3 @@
-// let HUOpenCVModule = require('../../HUOpenCVModule');
 import colorThief from "miniapp-color-thief";
 import HUOpenCVModule from "../../HUOpenCVModule";
 
@@ -30,7 +29,7 @@ Page({
     let palette = colorThief(mat.data)
       .palette(5)
       .get();
-    console.log(palette); // [[0,0,0],[0,0,0],[0,0,0]...]
+    console.log('colorThief:', palette); // [[0,0,0],[0,0,0],[0,0,0]...]
     HUOpenCVModule.show(this.data.canvasDom, mat);
     const base64 = HUOpenCVModule.convertMatToBase64(mat);
     
